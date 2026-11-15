@@ -1,8 +1,7 @@
 const $=id=>document.getElementById(id);
 const fmt=d=>new Date(d+"T00:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"});
-$("nm").textContent=C.nama;$("from").textContent=C.dari;
+$("nm").textContent=C.nama;$("from").textContent=C.from;
 $("msg").textContent=C.surat;$("sig").textContent="with lovee, "+C.from;
-$("dateLine").textContent=fmt(C.tanggalUlangTahun);
 $("photos").innerHTML=C.foto.map(f=>`<div class="ph">${f.src?`<img src="${f.src}" alt="" onerror="this.outerHTML='<span>📷</span>'">`:"<span>📷</span>"}<div>${f.cap}</div></div>`).join("");
 
 const cv=$("cv"),cx=cv.getContext("2d");let P=[],run=false;
