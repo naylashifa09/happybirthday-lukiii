@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Selamat Ulang Tahun, Sayang 🎂</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🎂</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="cv"></canvas>
+
+<div id="gate">
+  <p class="hint">Ada surat untukmu 💌</p>
+  <div class="env" id="env"><div class="flap"></div><div class="seal">♥</div></div>
+  <h1 class="to">Untuk <span id="nm"></span></h1>
+  <p class="hint">Ketuk segelnya untuk membuka</p>
+</div>
+
+<section>
+  <h2>Selamat Ulang Tahun 🎉</h2>
+  <p class="sub" id="dateLine"></p>
+  <div class="letter"><span id="msg"></span><div class="sig" id="sig"></div></div>
+</section>
+
+<section>
+  <h2>Hal yang aku sayang dari kamu</h2>
+  <p class="sub">Sedikit dari banyak alasan ♥</p>
+  <div class="reasons" id="reasons"></div>
+</section>
+
+<section>
+  <h2>Momen kita</h2>
+  <p class="sub">Kenangan kecil yang selalu bikin aku senyum</p>
+  <div class="photos" id="photos"></div>
+</section>
+
+<section>
+  <h2>Hitung hari bersama</h2>
+  <p class="sub" id="sinceLine"></p>
+  <div class="count" id="count"></div>
+</section>
+
+<section>
+  <h2>Tiup lilinnya, Sayang</h2>
+  <p class="sub">Ketuk kuenya, lalu buat permohonan</p>
+  <div class="cake" id="cake"><span class="flame" id="flame">🔥</span><br>🎂</div>
+  <div id="wish" class="serif"></div>
+  <button id="again" hidden>Rayakan lagi 🎊</button>
+</section>
+
+<footer>Dibuat dengan cinta oleh <span id="from"></span> ♥</footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
