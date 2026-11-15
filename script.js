@@ -1,18 +1,9 @@
 const $=id=>document.getElementById(id);
 const fmt=d=>new Date(d+"T00:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"});
 $("nm").textContent=C.nama;$("from").textContent=C.dari;
-$("msg").textContent=C.surat;$("sig").textContent="Dengan cinta, "+C.dari;
+$("msg").textContent=C.surat;$("sig").textContent="with lovee, "+C.from;
 $("dateLine").textContent=fmt(C.tanggalUlangTahun);
-$("sinceLine").textContent="Sejak "+fmt(C.jadianSejak);
-$("reasons").innerHTML=C.alasan.map((t,i)=>`<div class="reason"><b>${i+1}</b><span>${t}</span></div>`).join("");
 $("photos").innerHTML=C.foto.map(f=>`<div class="ph">${f.src?`<img src="${f.src}" alt="" onerror="this.outerHTML='<span>📷</span>'">`:"<span>📷</span>"}<div>${f.cap}</div></div>`).join("");
-
-function tick(){
-  const ms=Date.now()-new Date(C.jadianSejak+"T00:00:00");
-  const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60;
-  $("count").innerHTML=[[d,"hari"],[h,"jam"],[m,"menit"]].map(([v,l])=>`<div><b>${v}</b>${l}</div>`).join("");
-}
-tick();setInterval(tick,30000);
 
 const cv=$("cv"),cx=cv.getContext("2d");let P=[],run=false;
 function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener("resize",size);
