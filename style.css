@@ -72,3 +72,26 @@ nav button:disabled{opacity:.35;cursor:default}
 @keyframes smoke{0%{opacity:.9;stroke-dashoffset:60;transform:translateY(0)}100%{opacity:0;stroke-dashoffset:0;transform:translateY(-18px)}}
 .wishtxt{font-size:1.7rem;margin:0 0 12px;line-height:1.2;text-align:center}
 #again{display:block;width:100%;font:600 .95rem Inter,sans-serif;background:#d62a5a;color:#fff;border:0;border-radius:999px;padding:12px;cursor:pointer}
+
+#mus{position:absolute;top:12px;right:12px;z-index:6;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(120,60,60,.2);font-size:1.1rem;cursor:pointer;padding:0}
+header{padding-right:64px}
+
+#app.finpg header{display:none}
+#app.finpg #stage{padding:16px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 88% 96%,rgba(255,222,165,.55),transparent 45%),#fdeee6}
+.fin{text-align:center;width:100%}
+.bal{width:78%;max-width:260px;animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.bt{font:700 170px Fredoka,"Arial Rounded MT Bold",system-ui,sans-serif;paint-order:stroke}
+.fk{display:block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#d62a5a;margin-top:-6px}
+.ft{font:800 2.1rem/1.1 "Playfair Display",Georgia,serif;margin:8px 0 6px}
+.ft b{color:#d62a5a;font-weight:800}
+.fd{font-size:.85rem;color:#8a6f78;margin:0 0 6px}
+.fs{font-size:1.8rem;line-height:1.15;margin:6px 0 16px;color:#3a1626}
+.ic{display:flex;justify-content:center;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.ic span{width:34px;height:34px;border-radius:10px;background:#fff;box-shadow:0 2px 8px rgba(120,60,60,.12);display:grid;place-items:center;font-size:1.1rem;animation:pop .5s backwards}
+@keyframes pop{from{opacity:0;transform:scale(.4)}}
+#rep{font:600 .95rem Inter,sans-serif;background:#fff;color:#3a1626;border:1px solid #e6d7d1;border-radius:999px;padding:12px 24px;cursor:pointer;box-shadow:0 4px 14px rgba(120,60,60,.1)}
+.love{font-size:2rem;margin:0 0 20px;color:#8a6f78}
+.love span{display:inline-block;animation:pop .5s backwards}
+.love span:nth-child(2){animation-delay:.3s}
+.love span:nth-child(3){animation-delay:.6s}
