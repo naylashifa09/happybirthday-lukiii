@@ -2,7 +2,6 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 $("nm").textContent=C.nama;
 
-/* ===== Daftar halaman (urutannya bisa kamu ubah) ===== */
 const pages=[
   {kick:"Open the envelope",title:"A letter for you",nav:"The letter",
    html:`<p class="hw big">Dear ${esc(C.nama)},</p><p class="body">${esc(C.surat)}</p><p class="hw sign">With love, ${esc(C.from)}</p>`}
