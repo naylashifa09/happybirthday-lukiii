@@ -3,41 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Selamat Ulang Tahun, Sayang 🎂</title>
+<title>Happy Birthday 🎂</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🎂</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;700&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <canvas id="cv"></canvas>
 
 <div id="gate">
-  <p class="hint">There's a letter for youuu. 💌</p>
+  <p class="hint">There’s a letter for youuu. 💌</p>
   <div class="env" id="env"><div class="flap"></div><div class="seal">♥</div></div>
-  <h1 class="to">to <span id="nm"></span></h1>
-  <p class="hint">clickkk sayang</p>
+  <h2 class="to">to <span id="nm"></span></h2>
+  <p class="hint">clickkk</p>
 </div>
 
-<section>
-  <h2>HAppy Birthdayyy LUKIII!! 🎉</h2>
-  <div class="letter"><span id="msg"></span><div class="sig" id="sig"></div></div>
-</section>
-
-<section>
-  <h2>our moment</h2>
-  <p class="sub">what makes me smilee</p>
-  <div class="photos" id="photos"></div>
-</section>
-
-<section>
-  <h2>Blow out the candles sayangg.</h2>
-  <p class="sub">pencet</p>
-  <div class="cake" id="cake"><span class="flame" id="flame">🔥</span><br>🎂</div>
-  <div id="wish" class="serif"></div>
-  <button id="again" hidden>againnn?🎊</button>
-</section>
-
-<footer>made with love, <span id="from"></span> ♥</footer>
+<main id="app" hidden>
+  <header><small id="kick"></small><h1 id="ttl"></h1></header>
+  <div id="stage"></div>
+  <nav>
+    <button id="prev" aria-label="Sebelumnya">‹</button>
+    <div class="mid"><b id="nt"></b><div id="dots"></div></div>
+    <span id="cnt"></span>
+    <button id="next" aria-label="Selanjutnya">›</button>
+  </nav>
+</main>
 
 <script src="config.js"></script>
 <script src="script.js"></script>
