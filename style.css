@@ -46,3 +46,29 @@ nav button:disabled{opacity:.35;cursor:default}
 #dots i.on{width:24px;background:#d62a5a}
 #cnt{font-size:12px;color:#777}
 #cv{position:fixed;inset:0;pointer-events:none;z-index:30}
+
+#app.cakepg header{display:none}
+#app.cakepg #stage{padding:0;overflow:hidden;position:relative}
+.scene{position:absolute;inset:0;background:linear-gradient(#cdbcc0,#e9dcdc 60%,#f4ebe6)}
+.glow{position:absolute;top:6%;left:50%;width:320px;height:320px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,235,190,.75),transparent 65%)}
+.cakesvg{position:absolute;top:2%;left:50%;transform:translateX(-50%);width:96%;max-height:60%}
+.card{position:absolute;left:12px;right:12px;bottom:8px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:22px;padding:16px;box-shadow:0 10px 30px rgba(80,40,50,.18)}
+.card small{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9b1c4a}
+.card h2{font:800 1.4rem/1.2 "Playfair Display",Georgia,serif;margin:4px 0 12px}
+.btns{display:flex;gap:10px}
+.btns button{flex:1;padding:13px 0;border-radius:999px;border:1px solid #e6d7d1;background:#fff;font:600 .95rem Inter,sans-serif;color:#3a1626;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
+#mic{background:#d62a5a;color:#fff;border-color:#d62a5a}
+#mic.on{animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(214,42,90,.22)}}
+.note{font-size:.72rem;color:#8a6f78;margin:10px 0 0;line-height:1.4}
+.cn{position:absolute;top:16px;right:16px;display:flex;gap:3px}
+.cn i{width:4px;height:14px;border-radius:2px;background:#f4b860;transition:.4s}
+.cn i.off{opacity:.25}
+.fl{transform-box:fill-box;transform-origin:50% 100%;transition:opacity .4s,transform .5s;animation:fl2 .6s infinite alternate}
+.fl.out{opacity:0;transform:scale(.2) translateY(-6px);animation:none}
+@keyframes fl2{to{transform:scale(1.08,1.12) rotate(3deg)}}
+.sm{opacity:0;stroke-dasharray:60;stroke-dashoffset:60}
+.sm.go{animation:smoke 1.6s ease-out forwards}
+@keyframes smoke{0%{opacity:.9;stroke-dashoffset:60;transform:translateY(0)}100%{opacity:0;stroke-dashoffset:0;transform:translateY(-18px)}}
+.wishtxt{font-size:1.7rem;margin:0 0 12px;line-height:1.2;text-align:center}
+#again{display:block;width:100%;font:600 .95rem Inter,sans-serif;background:#d62a5a;color:#fff;border:0;border-radius:999px;padding:12px;cursor:pointer}
