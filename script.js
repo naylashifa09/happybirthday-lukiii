@@ -9,8 +9,29 @@ const pages=[
 ];
 C.foto.forEach((f,i)=>pages.push({kick:"Our moments",title:"Our photos",nav:"Photo "+(i+1),
   html:`<div class="pic">${f.src?`<img src="${esc(f.src)}" alt="" onerror="this.outerHTML='📷'">`:"📷"}</div><p class="hw cap">${esc(f.cap)}</p>`}));
-pages.push({kick:"Make a wish",title:"Blow the candles",nav:"The cake",cake:true,
-  html:`<div class="cakebox"><div class="cake" id="cake"><span class="flame" id="flame">🔥</span><br>🎂</div><p class="hw" id="wish">Tap the cake 💗</p><button id="again" hidden>again? 🎊</button></div>`});
+function cakeSVG(){
+  const cols=["#ffd36e","#9fdcc0","#f9a8d4","#b79ae0","#ffd36e"],xs=[100,125,150,175,200];
+  const mac=(x,y,c)=>`<ellipse cx="${x}" cy="${y+3}" rx="11" ry="5" fill="${c}"/><rect x="${x-10}" y="${y}" width="20" height="2.6" fill="#fff" opacity=".85"/><ellipse cx="${x}" cy="${y-1}" rx="11" ry="6" fill="${c}"/>`;
+  let v=`<svg viewBox="0 50 300 285" class="cakesvg"><defs><radialGradient id="gl"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".9"/><stop offset="1" stop-color="#ffd36e" stop-opacity="0"/></radialGradient></defs>`;
+  v+=`<ellipse cx="150" cy="322" rx="52" ry="7" fill="#d8d2da"/><rect x="141" y="294" width="18" height="28" fill="#e6e1e8"/><ellipse cx="150" cy="290" rx="112" ry="17" fill="#f4f1f5" stroke="#dcd6de"/>`;
+  v+=`<rect x="48" y="212" width="204" height="74" rx="16" fill="#c4abe6"/><ellipse cx="150" cy="214" rx="102" ry="11" fill="#d6c3f0"/>`;
+  for(let x=60;x<=240;x+=12)v+=`<circle cx="${x}" cy="283" r="5" fill="#a98ad8"/>`;
+  const sc=["#ffd36e","#ff8fb1","#9fdcc0","#fff","#8ec5ff"];
+  for(let i=0;i<34;i++){const x=62+(i*53)%176,y=232+(i*37)%38;v+=`<rect x="${x}" y="${y}" width="7" height="2.4" rx="1.2" fill="${sc[i%5]}" transform="rotate(${(i*47)%180} ${x} ${y})"/>`}
+  v+=`<rect x="78" y="132" width="144" height="84" rx="14" fill="#f7a3c2"/><ellipse cx="150" cy="134" rx="72" ry="10" fill="#fff"/>`;
+  for(let x=88;x<=206;x+=19)v+=`<rect x="${x}" y="134" width="13" height="${16+(x*7)%20}" rx="6.5" fill="#fff"/>`;
+  v+=mac(72,208,"#9fdcc0")+mac(100,204,"#ffc2a8")+mac(200,204,"#9fdcc0")+mac(228,208,"#ffc2a8");
+  xs.forEach((x,i)=>{
+    v+=`<rect x="${x-4}" y="92" width="8" height="42" rx="2" fill="${cols[i]}"/><path d="M${x-4} 104l8-4M${x-4} 116l8-4M${x-4} 128l8-4" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>`;
+    v+=`<path class="sm" id="s${i}" d="M${x} 80q-6-9 0-17q6-8 0-16" stroke="#fff" fill="none" stroke-width="3" stroke-linecap="round"/>`;
+    v+=`<g class="fl" id="f${i}"><circle cx="${x}" cy="82" r="18" fill="url(#gl)"/><ellipse cx="${x}" cy="82" rx="4.6" ry="8" fill="#ffb347"/><ellipse cx="${x}" cy="84" rx="2.4" ry="4.6" fill="#fff3b0"/></g>`;
+  });
+  v+=`<path d="M150 136C128 122 136 106 150 116C164 106 172 122 150 136Z" fill="#e63946"/>`;
+  v+=mac(110,128,"#ffc2a8")+mac(190,128,"#9fdcc0");
+  return v+`</svg>`;
+}
+pages.push({kick:"Make a wish",title:"Blow the candles",nav:"The candles",cake:true,
+  html:`<div class="scene"><div class="glow"></div>${cakeSVG()}<div class="card"><div class="cn" id="cn"><i></i><i></i><i></i><i></i><i></i></div><small>Make a wish</small><h2 id="ct">Blow out the candles</h2><div id="ctl"><div class="btns"><button id="mic">🎤 Microphone</button><button id="hold">≋ Hold</button></div><p class="note" id="note">The microphone only listens for your breath, right here on your device. Nothing is recorded.</p></div></div></div>`});
 
 /* ===== Confetti ===== */
 const cv=$("cv"),cx=cv.getContext("2d");let P=[],run=false;
@@ -32,6 +53,7 @@ let cur=0;
 $("dots").innerHTML=pages.map(()=>"<i></i>").join("");
 function show(i){
   cur=Math.max(0,Math.min(pages.length-1,i));
+  stopAll();$("app").classList.toggle("cakepg",!!pages[cur].cake);
   const p=pages[cur];
   $("kick").textContent=p.kick;$("ttl").textContent=p.title;$("nt").textContent=p.nav;
   $("cnt").textContent=(cur+1)+"/"+pages.length;
@@ -40,13 +62,48 @@ function show(i){
   $("prev").disabled=cur===0;$("next").disabled=cur===pages.length-1;
   if(p.cake)initCake();
 }
+let lit=[],mic=null,holdT=null;
+function stopAll(){
+  clearInterval(holdT);holdT=null;
+  if(mic){clearInterval(mic.t);mic.stream.getTracks().forEach(t=>t.stop());try{mic.ctx.close()}catch(e){}mic=null}
+}
+function snuff(){
+  const i=lit.indexOf(true);if(i<0)return;
+  lit[i]=false;$("f"+i).classList.add("out");$("s"+i).classList.add("go");
+  $("cn").children[i].classList.add("off");
+  if(!lit.includes(true))finish();
+}
+function finish(){
+  stopAll();confetti(220);
+  $("ct").textContent="Yay! Happy birthday 🎉";
+  $("ctl").innerHTML=`<p class="hw wishtxt">${esc(C.doa)}</p><button id="again">again? 🎊</button>`;
+  $("again").onclick=()=>show(cur);
+}
+async function startMic(){
+  if(mic)return;
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const an=ctx.createAnalyser();an.fftSize=1024;
+    ctx.createMediaStreamSource(stream).connect(an);
+    const buf=new Uint8Array(an.fftSize);let last=0;
+    const t=setInterval(()=>{
+      an.getByteTimeDomainData(buf);let sum=0;
+      for(const x of buf){const d=(x-128)/128;sum+=d*d}
+      if(Math.sqrt(sum/buf.length)>0.1&&Date.now()-last>550){last=Date.now();snuff()}
+    },80);
+    mic={stream,ctx,t};
+    $("mic").classList.add("on");$("note").textContent="Listening… blow gently into your mic 🌬️";
+  }catch(e){$("note").textContent="Mic can’t be used here, try the Hold button instead 💗"}
+}
 function initCake(){
-  let blown=false;
-  $("cake").onclick=()=>{
-    if(blown)return;blown=true;
-    $("flame").classList.add("off");$("wish").textContent=C.doa;$("again").hidden=false;confetti(200);
-  };
-  $("again").onclick=()=>{blown=false;$("flame").classList.remove("off");$("wish").textContent="Tap the cake 💗";$("again").hidden=true;confetti(200)};
+  lit=[true,true,true,true,true];
+  const h=$("hold");
+  h.onpointerdown=e=>{e.preventDefault();if(holdT)return;snuff();holdT=setInterval(snuff,650)};
+  const end=()=>{clearInterval(holdT);holdT=null};
+  h.onpointerup=h.onpointerleave=h.onpointercancel=end;
+  h.oncontextmenu=e=>e.preventDefault();
+  $("mic").onclick=startMic;
 }
 $("prev").onclick=()=>show(cur-1);
 $("next").onclick=()=>show(cur+1);
